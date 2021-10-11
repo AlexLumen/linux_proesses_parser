@@ -4,7 +4,6 @@ from collections import defaultdict
 
 process = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE, universal_newlines=True).stdout.readlines()
 nfields = len(process[0].split()) - 1
-all_process = []
 users = set()
 memory_result = 0
 cpu_result = 0
@@ -13,9 +12,8 @@ highest_cpu_load = 0
 highest_memory_name = ""
 highest_cpu_load_name = ""
 users_process = defaultdict(int)
-process_count = len(process)
+
 for row in process[1:]:
-    all_process.append(row.split(None, nfields))
     if row[0] not in users:
         users.add(row.split()[0])
     user_item = row.split()[0]
@@ -24,17 +22,27 @@ for row in process[1:]:
     cpu_number = float(row.split()[2])
     memory_result += memory_number
     cpu_result += cpu_number
+
     if float(row.split()[3]) > highest_memory:
         highest_memory = float(row.split()[3])
-        highest_memory_name = row.split()[10][:23]
+        highest_memory_name = row.split()[10][:20]
     elif float(row.split()[2]) > highest_cpu_load:
         highest_cpu_load = float(row.split()[2])
-        highest_cpu_load_name = row.split()[10][:23]
+        highest_cpu_load_name = row.split()[10][:20]
+
 memory_result = round(memory_result, 2)
+cpu_result = round(cpu_result, 2)
+process_count = sum(dict(users_process).values())
+
+if highest_cpu_load_name == "":
+    highest_cpu_load_name = "Память не используется"
+if highest_cpu_load_name == "":
+    highest_cpu_load_name = "CPU не используется"
+
 report = [
     f"Отчет о состоянии системы:\n"
     f"Пользователи системы: {users}\n",
-    f"Процессов зарущенно: {process_count}\n",
+    f"Процессов запущенно: {process_count}\n",
     f"Пользовательских процессов: {dict(users_process)}\n",
     f"Всего памяти используется: {memory_result}\n",
     f"Всего CPU используется: {cpu_result}\n",
