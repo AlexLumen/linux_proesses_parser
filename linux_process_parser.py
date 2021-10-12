@@ -34,10 +34,6 @@ memory_result = round(memory_result, 2)
 cpu_result = round(cpu_result, 2)
 process_count = sum(dict(users_process).values())
 
-if highest_memory_name == "":
-    highest_memory_name = "Память не используется"
-if highest_cpu_load_name == "":
-    highest_cpu_load_name = "CPU не используется"
 report = [
     f"Отчет о состоянии системы:\n"
     f"Пользователи системы: {users}\n",
