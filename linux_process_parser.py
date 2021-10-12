@@ -23,10 +23,10 @@ for row in process[1:]:
     memory_result += memory_number
     cpu_result += cpu_number
 
-    if float(row.split()[3]) > highest_memory:
+    if float(row.split()[3]) >= highest_memory:
         highest_memory = float(row.split()[3])
         highest_memory_name = row.split()[10][:20]
-    elif float(row.split()[2]) > highest_cpu_load:
+    elif float(row.split()[2]) >= highest_cpu_load:
         highest_cpu_load = float(row.split()[2])
         highest_cpu_load_name = row.split()[10][:20]
 
@@ -34,11 +34,10 @@ memory_result = round(memory_result, 2)
 cpu_result = round(cpu_result, 2)
 process_count = sum(dict(users_process).values())
 
-if highest_cpu_load_name == "":
-    highest_cpu_load_name = "Память не используется"
+if highest_memory_name == "":
+    highest_memory_name = "Память не используется"
 if highest_cpu_load_name == "":
     highest_cpu_load_name = "CPU не используется"
-
 report = [
     f"Отчет о состоянии системы:\n"
     f"Пользователи системы: {users}\n",

@@ -1,0 +1,8 @@
+Отчет о состоянии системы:
+Пользователи системы: {'syslog', 'alex', 'colord', 'avahi', 'rtkit', 'kernoops', 'whoopsie', 'message+', 'systemd+', 'root'}
+Процессов запущенно: 194
+Пользовательских процессов: {'root': 104, 'systemd+': 2, 'avahi': 2, 'message+': 1, 'syslog': 1, 'whoopsie': 1, 'kernoops': 2, 'rtkit': 1, 'colord': 1, 'alex': 79}
+Всего памяти используется: 90.7
+Всего CPU используется: 128.2
+Больше всего памяти использует: /snap/pycharm-commun
+Больше всего CPU использует: /usr/bin/python3
