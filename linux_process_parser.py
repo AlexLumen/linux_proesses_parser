@@ -25,10 +25,10 @@ for row in process[1:]:
 
     if float(row.split()[3]) >= highest_memory:
         highest_memory = float(row.split()[3])
-        highest_memory_name = row.split()[10][:20]
-    elif float(row.split()[2]) >= highest_cpu_load:
+        highest_memory_name = ' '.join(row.split()[10:][:20])
+    if float(row.split()[2]) >= highest_cpu_load:
         highest_cpu_load = float(row.split()[2])
-        highest_cpu_load_name = row.split()[10][:20]
+        highest_cpu_load_name = ' '.join(row.split()[10:][:20])
 
 memory_result = round(memory_result, 2)
 cpu_result = round(cpu_result, 2)
